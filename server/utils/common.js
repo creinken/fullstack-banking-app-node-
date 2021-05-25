@@ -2,11 +2,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { pool } = require('../db/connect');
 
-const isInvalidField = (receivedFields, validFieldsToUpdate => {
+const isInvalidField = (receivedFields, validFieldsToUpdate) => {
     return receivedFields.some(
         (field) => validFieldsToUpdate.indexOf(field) === -1
     );
-});
+};
 
 const validateUser = async (email,password) => {
     const result = await pool.query(
