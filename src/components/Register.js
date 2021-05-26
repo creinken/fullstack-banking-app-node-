@@ -45,15 +45,16 @@ class Register extends React.Component {
                 });
             } else {
                 this.setState({ isSubmitted: true });
-                this.props.dispatch(registerNewUser({ first_name, last_name, email, password}))
-                  .then((response) => {
-                      if (response.success) {
-                          this.setState({
-                              successMsg: 'User registered successfully.',
-                              errorMsg: ''
-                          });
-                      }
-                  });
+                this.props
+                    .dispatch(registerNewUser({ first_name, last_name, email, password}))
+                        .then((response) => {
+                            if (response.success) {
+                                this.setState({
+                                    successMsg: 'User registered successfully.',
+                                    errorMsg: ''
+                                });
+                            }
+                        });
             }
         }
     }
