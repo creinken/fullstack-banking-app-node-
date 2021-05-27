@@ -3,7 +3,8 @@ import thunk from 'redux-thunk';
 import authReducer from '../reducers/auth';
 import errorsReducer from '../reducers/errors';
 
-const composeEnhancers = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+
 const store = createStore(
     combineReducers({
         auth: authReducer,
