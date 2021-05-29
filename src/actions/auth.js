@@ -3,7 +3,7 @@ import axios from 'axios';
 import { history } from '../router/AppRouter';
 import { getErrors } from './errors';
 import { initiateGetProfile } from './profile';
-import { removeAuthHeader, setAuthHeader } from '../utils/common';
+import { post } from '../utils/api';
 
 export const signIn = (user) => ({
     type: SIGN_IN,
@@ -49,9 +49,7 @@ export const signOut = () => ({
 export const initiateLogout = () => {
     return async (dispatch) => {
         try {
-            setAuthHeader();
-            await axios.post(`${BASE_API_URL}/logout`);
-            removeAuthHeader();
+            await post(`${BASE_API_URL}/logout`);
             localStorage.removeItem('user_token');
             return dispatch(signOut());
         } catch (error) {
