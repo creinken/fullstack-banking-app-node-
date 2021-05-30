@@ -29,7 +29,7 @@ class Account extends React.Component {
                         Withdraw
                     </Button>
                     <Button
-                        variant="primary"
+                        variant="secondary"
                         className={`${
                             selectedType === 'deposit' ? 'active account-btn' : 'acount-btn'
                         }`}
