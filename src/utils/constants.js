@@ -4,3 +4,5 @@ export const SIGN_OUT = 'SIGN_OUT';
 export const GET_ERRORS = 'GET_ERRORS';
 export const RESET_ERRORS = 'RESET_ERRORS';
 export const UPDATE_PROFILE = 'UPDATE_PROFILE';
+export const SET_ACCOUNT = 'SET_ACCOUNT';
+export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';

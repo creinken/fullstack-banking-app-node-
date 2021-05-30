@@ -13,7 +13,7 @@ export const updateAccountBalance = (amountToChange, operation) => ({
     operation
 });
 
-export const initiateAccntDetails = () => {
+export const initiateGetAccntDetails = () => {
     return async (dispatch) => {
         try {
             const account = await get(`${BASE_API_URL}/account`);
