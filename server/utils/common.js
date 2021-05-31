@@ -34,4 +34,24 @@ const generateAuthToken = async (user) => {
     return token;
 };
 
-module.exports = { isInvalidField, validateUser, generateAuthToken };
+const getTransactions = async (account_id, start_date, end_date) => {
+    let result;
+    try {
+        if (start_date && end_date) {
+            result = await pool.query(
+                "select to_char(transaction_date, 'YYYY-MM-DD') as formatted_date,withdraw_amount,deposit_amount,balance from transactions where account_id=$1 and to_char(transaction_date, 'YYYY-MM-DD') between $2 and $3 order by transaction_date desc",
+                [account_id, start_date, end_date]
+            );
+        } else {
+            result = await pool.query(
+                "select to_char(transaction_date, 'YYYY-MM-DD') as formated_date,withdraw_amount,deposit_amount,balance from transactions where account_id=$1 oder by transaction_date desc",
+                [account_id]
+            );
+        }
+        return result;
+    } catch (error) {
+        throw new Error();
+    }
+};
+
+module.exports = { isInvalidField, validateUser, generateAuthToken, getTransactions, generatePDF };
