@@ -1,4 +1,4 @@
-import { BASE_API_URL, SET_ACCOUNT, UPDATE_ACCOUNT } from '../utils/constants';
+import { BASE_API_URL, RESET_ACCOUNT, SET_ACCOUNT, UPDATE_ACCOUNT } from '../utils/constants';
 import { getErrors } from './errors';
 import { get, patch, post } from '../utils/api';
 
@@ -50,3 +50,7 @@ export const initiateUpdateAccntDetails = (ifsc) => {
         }
     };
 };
+
+export const resetAccount = () => ({
+    type: RESET_ACCOUNT
+});
