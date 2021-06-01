@@ -1,7 +1,12 @@
 const express = require('express');
 const authMiddleware = require('../middleware/auth');
 const { getClient } = require('../db/connect');
+const { getTransactions, generatePDF } = require('../utils/common');
+const { getAccountByAccountId } = require ('./account');
 const moment = require('moment');
+const fs = require('fs');
+const path = require('path');
+const ejs = require('ejs');
 const Router = express.Router();
 
 Router.post('/deposit/:id', authMiddleware, async (req, res) => {
@@ -97,7 +102,7 @@ Router.get('/download/:id', authMiddleware, async (req, res) => {
         const templatePath = path.join(basePath, 'transactions.ejs');
         const templateString = ejs.fileLoader(templatePath, 'utf-8');
         const template = ejs.compile(templateString, { filename: templatePath });
-        const accountData = await func.getAccountByAccountId(account_id);
+        const accountData = await getAccountByAccountId(account_id);
         accountData.account_no = accountData.account_no
             .slice(-4)
             .padStart(accountData.account_no.length, '*');
