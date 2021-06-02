@@ -19,7 +19,7 @@ export const initiateLogin = (email, password) => {
                 password
             });
             const user = result.data;
-            localStorage.setItem('user_token', user.token);
+            user.isAuthenticated = true;
             dispatch(signIn(user));
             dispatch(initiateGetProfile(user.email));
             history.push('/profile');
