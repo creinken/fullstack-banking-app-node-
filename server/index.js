@@ -1,15 +1,16 @@
 const express = require('express');
-const cors = require('cors');
 const authRoute = require('./routes/auth');
 const profileRoute = require('./routes/profile');
 const accountRoute = require('./routes/account');
 const transactionsRoute = require('./routes/transactions');
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
+app.use(cookieParser());
 app.set('view engine', 'ejs');
 app.use(authRoute);
 app.use(accountRoute.Router);
